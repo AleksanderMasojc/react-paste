@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import axios from "../axios";
+//import axios from "../axios";
+
+import './Register.css';
 
 import React from 'react'
 
@@ -40,14 +42,14 @@ function Register() {
         console.log(user, pass);
 
         try{
-            const response = await axios.post('/register',
-                JSON.stringify({user, pass}),
-                {
-                    headers: { 'Content-Type': 'application/json'},
-                    withCredentials: true
-                }
-            );
-            console.log(JSON.stringify(response));
+            // const response = await axios.post('/register',
+            //     JSON.stringify({user, pass}),
+            //     {
+            //         headers: { 'Content-Type': 'application/json'},
+            //         withCredentials: true
+            //     }
+            // );
+            // console.log(JSON.stringify(response));
             setSuccess(true);//nie wiem co tu redirect jakis? do login?
         } catch(err){
             console.log(err);
@@ -56,20 +58,30 @@ function Register() {
 
     return (
         <section>
-            <h1>
-                Register
-            </h1>
+
             <form onSubmit={handleSubmit}>
-                <label className="username">Username:</label>
-                <input type="text" id="name"
-                onChange={(e) => setUser(e.target.value)}
-                required></input>
-                <label className="pass">Password:</label>
-                <input type="password" id="password" 
-                onChange={(e) => setPass(e.target.value)}
-                required></input>
-                <button disabled={!validPass || !validUser ? true : false}>Sign up</button>
-                <p>Dodaj Sign in link</p>
+                <h1>
+                    Register
+                </h1>
+                <div className="inputBox">
+                    <input type="text" id="name"
+                    onChange={(e) => setUser(e.target.value)}
+                    required></input>
+                    <label className="username">Username:</label>
+                    <span></span>
+                </div>    
+                <div className="inputBox">
+                    <input type="password" id="password" 
+                    onChange={(e) => setPass(e.target.value)}
+                    required></input>
+                    <label className="pass">Password:</label>
+                    <span></span>
+                </div>
+                <div className="options">
+                    <a href="#">Zaloguj się</a>
+                    <button disabled={!validPass || !validUser ? true : false}>Sign up</button>
+                </div>    
+                
             </form>
         </section>
     )

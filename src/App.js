@@ -1,4 +1,5 @@
-import Register from './components/Register';
+import React from 'react';
+import Register from './components/Register.js';
 
 function App() {
 
